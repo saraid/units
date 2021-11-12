@@ -33,11 +33,3 @@ end
 # => NoMethodError (undefined method `meter' for 1:Integer)
 # irb> Foo.foo
 # => #<Units::Quantity:0x00007faac21ee7a8 @unit=#<Units::Meter:0x7faac283e018 :m>, @number=1>
-
-if __FILE__ == $0
-  require 'irb'
-  require 'irb/completion'
-  Units.monkeypatch!
-  module Kernel def Scalar(x) Units::Scalar.new(x) end end
-  IRB.start
-end

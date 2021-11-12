@@ -1,6 +1,3 @@
-require 'rspec'
-require_relative '../units'
-
 describe Units::Quantity do
   subject { Units::Quantity.new(1, Units::Meter.instance) }
 
