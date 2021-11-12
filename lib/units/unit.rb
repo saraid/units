@@ -32,7 +32,15 @@ module Units
     end
 
     def format(number)
-      [number, to_s].join
+      case number
+      when Rational
+        if number.denominator == 1 then number.to_i
+        else number
+        end
+      else number
+      end
+        .yield_self { |n| [n, to_s] }
+        .join
     end
 
     def conversions
