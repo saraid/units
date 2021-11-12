@@ -47,13 +47,30 @@ module Units
       {}
     end
 
+    def transitive_conversions
+      @transitive_conversions ||=
+        conversions.keys.each.with_object({}) do |first_degree_converter, transitives|
+          first_degree_converter.instance.conversions.keys.each do |second_degree_converter|
+            #transitives[second_degree_converter] = conversions[first_degree_converter][:conversion] >> first_degree_converter.instance.conversions[second_degree_converter][:conversion]
+            transitives[second_degree_converter] = [
+              conversions[first_degree_converter],
+              first_degree_converter.instance.conversions[second_degree_converter]
+            ]
+              .map { |c| c[:conversion] }
+              .reduce(:>>)
+          end
+        end
+    end
+
     def can_convert_to?(unit)
       conversions.key?(unit) || conversions.key?(unit.class)
     end
 
     def convert(unit)
       raise ArgumentError, 'cannot convert between different types' unless unit.type == type
-      conversions[unit.class][:conversion]
+      return conversions.fetch(unit.class)[:conversion] if conversions.key?(unit.class)
+
+      transitive_conversions.fetch(unit.class)
     end
 
     def *(unit)
