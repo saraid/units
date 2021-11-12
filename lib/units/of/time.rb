@@ -35,6 +35,7 @@ module Units
     end
   end
 
+  # https://en.wikipedia.org/wiki/Year#Symbols
   class MeanTropicalYear < Unit.of(:time)
     def to_s; ' mean tropical years'; end
     def conversions
@@ -44,6 +45,7 @@ module Units
     end
   end
 
+  # https://en.wikipedia.org/wiki/Year#Symbols
   class MeanGregorianYear < Unit.of(:time)
     def to_s; ' mean Gregorian years'; end
     def conversions
@@ -53,6 +55,7 @@ module Units
     end
   end
 
+  # https://en.wikipedia.org/wiki/Year#Symbols
   class MeanJulianYear < Unit.of(:time)
     def to_s; ' mean Julian years'; end
     def conversions
@@ -62,6 +65,7 @@ module Units
     end
   end
 
+  # https://en.wikipedia.org/wiki/Year#Symbols
   class Annus < Unit.of(:time)
     def to_s; 'a'; end
     def conversions
@@ -72,6 +76,7 @@ module Units
   end
   Annum = Annus
 
+  # https://en.wikipedia.org/wiki/Year#Symbols
   class Megaannum < Unit.of(:time)
     def to_s; ' Ma'; end
     def conversions
