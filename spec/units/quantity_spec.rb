@@ -6,6 +6,13 @@ describe Units::Quantity do
     expect(subject.unit).to eq(Units::Meter.instance)
   end
 
+  it 'should be able to add same-type different-specific quantities' do
+    meter = Units::Quantity.new(1, Units::Meter.instance)
+    kilometer = Units::Quantity.new(1, Units::Kilometer.instance)
+
+    expect { meter + kilometer }.not_to raise_error
+    expect(meter + kilometer).to eq(Units::Quantity.new(1001, Units::Meter.instance))
+  end
 
   context 'verify operator(Numeric, Quantity) works' do
     it do

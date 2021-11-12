@@ -45,7 +45,8 @@ module Units
         if unit != other.unit && !other.unit.can_convert_to?(unit)
           raise ArgumentError, 'cannot add quantities with different units'
         end
-        self.class.new(number + other.number, unit)
+        other_number = other.convert(unit.class).number
+        self.class.new(number + other_number, unit)
       end
     end
 
