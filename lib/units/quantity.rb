@@ -75,7 +75,7 @@ module Units
       case other
       when Numeric then self / Scalar.new(other)
       when Scalar then self.class.new(number * other.number, unit)
-      when Quantity then self.class.new(number * other.number, DerivedUnit.for(:*, unit, other.unit))
+      when Quantity then self.class.new(number * other.number, unit * other.unit)
       end
     end
 
@@ -83,7 +83,7 @@ module Units
       case other
       when Numeric then self / Scalar.new(other)
       when Scalar then self.class.new(number / other.number, unit)
-      when Quantity then self.class.new(number / other.number, DerivedUnit.for(:/, unit, other.unit))
+      when Quantity then self.class.new(number / other.number, unit / other.unit)
       end
     end
 

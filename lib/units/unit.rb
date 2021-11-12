@@ -47,5 +47,13 @@ module Units
       raise ArgumentError, 'cannot convert between different types' unless unit.type == type
       conversions[unit.class][:conversion]
     end
+
+    def *(unit)
+      DerivedUnit.for(:*, self, unit)
+    end
+
+    def /(unit)
+      DerivedUnit.for(:/, self, unit)
+    end
   end
 end
