@@ -64,6 +64,11 @@ module Units
 
   class Annus < Unit.of(:time)
     def to_s; 'a'; end
+    def conversions
+      { Second => { method_names: %i( in_seconds ),
+                    conversion: proc { |n| n * 31_556_925.445 } }
+      }
+    end
   end
   Annum = Annus
 
